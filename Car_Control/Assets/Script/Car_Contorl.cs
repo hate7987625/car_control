@@ -15,7 +15,7 @@ public class Car_Contorl : MonoBehaviour
     [Header("汽車品牌")]
     public string car_Brand;
     [Header("汽車顏色")]
-    public Renderer color;
+    public Color color;
     [Header("汽車變形元件")]
     public Transform car_object;
     Rigidbody car;
@@ -38,7 +38,7 @@ public class Car_Contorl : MonoBehaviour
         {
             /*car.velocity = car.transform.right * 10;
             speed = car.velocity.magnitude;*/
-            car.AddForce(car.transform.right * speed, ForceMode.Acceleration);
+            car.AddForce(car.transform.right * speed, ForceMode.Force);
             print('s');
         }
          if (Input.GetKey(KeyCode.A))
@@ -76,7 +76,23 @@ public class Car_Contorl : MonoBehaviour
             print("Space_Up");
 
         }
-
+       
     }
-
+    public void move_w()
+    {
+        print('W');
+        car.AddForce(car.transform.right * -speed, ForceMode.Force);
+    }
+    public void move_s()
+    {
+        car.AddForce(car.transform.right * speed, ForceMode.Force);
+    }
+    public void move_a()
+    {
+        car.angularVelocity = new Vector3(0, -speed_turn, 0);
+    }
+    public void move_d()
+    {
+        car.angularVelocity = new Vector3(0, speed_turn, 0);
+    }
 }
