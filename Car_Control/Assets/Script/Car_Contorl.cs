@@ -5,11 +5,11 @@ using UnityEngine;
 public class Car_Contorl : MonoBehaviour
 {
     [Header("汽車速度"),Range(0,100)]
-    public float speed;
+    public float speed=10;
     [Header("汽車轉彎速度"), Range(0, 100)]
-    public float speed_turn;
+    public float speed_turn=10;
     [Header("汽車擋位"), Range(0, 5)]
-    public float shift;
+    public float shift=1;
     [Header("汽車煞車")]
     public bool stop;
     [Header("汽車品牌")]
@@ -57,11 +57,26 @@ public class Car_Contorl : MonoBehaviour
             print('q');
 
         }
-        if (Input.GetKeyDown(KeyCode.E)&&shift>0)
+        else if (Input.GetKeyDown(KeyCode.E)&&shift>0)
         {
             shift--;
             print('e');
         }
+        if (Input.GetKeyDown(KeyCode.Space) )
+        {
+            stop = true;
+            car.drag = 10;
+            print("Space_down");
+
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            stop = false;
+            car.drag = 0;
+            print("Space_Up");
+
+        }
+
     }
 
 }
